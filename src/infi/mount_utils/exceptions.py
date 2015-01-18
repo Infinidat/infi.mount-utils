@@ -6,7 +6,7 @@ class MountException(InfiException):
 class IncorrectInvocationOrPermissions(MountException):
     pass
 
-class SystemErrorExeption(MountException):
+class SystemErrorException(MountException):
     pass
 
 class MountInternalBugException(MountException):
@@ -26,9 +26,15 @@ class SomeMountSucceededException(MountException):
 
 
 ERRORCODES_DICT = {1:IncorrectInvocationOrPermissions,
-                   2:SystemErrorExeption,
+                   2:SystemErrorException,
                    4:MountInternalBugException,
                    8:UserInterruptException,
                    16:ProblemWithWritingOrLockingException,
                    32:MountFailureException,
                    64:SomeMountSucceededException}
+
+def translate_mount_error(errorno):
+    if ERRORCODES_DICT.has_key(errorno):
+        return ERRORCODES_DICT.get(errorno)
+    else:
+        return MountException(errorno)

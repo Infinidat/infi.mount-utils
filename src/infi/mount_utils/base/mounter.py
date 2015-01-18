@@ -1,4 +1,4 @@
-from ..exceptions import MountException
+from ..exceptions import translate_mount_error
 from infi.exceptools import chain
 from infi.pyutils.contexts import contextmanager
 
@@ -16,7 +16,7 @@ def execute(commandname, args):
     debug('stdout = %s', subprocess.get_stdout())
     debug('stderr = %s', subprocess.get_stderr())
     if subprocess.get_returncode() != 0:
-        raise chain(MountException(subprocess.get_returncode()))
+        raise chain(translate_mount_error(subprocess.get_returncode())())
 
 def execute_mount(args):
     execute("mount", args)
