@@ -5,10 +5,10 @@ class MountEntry(object):
     def from_groupdict(cls, groupdict):
         return cls(**groupdict)
 
-    def __init__(self, fsname, dirname, typename, opts=dict(), freq=0, passno=0, mountonboot="yes", createtime=0):
+    def __init__(self, fsname, dirname, typename, opts=dict(), freq=0, passno=0):
         self._bunch = Munch(fsname=fsname, dirname=dirname,
                           typename=typename, opts=opts,
-                          freq=freq, passno=passno, mountonboot=mountonboot, createtime=createtime)
+                          freq=freq, passno=passno)
 
     def get_fsname(self):
         """:returns: name of mounted file system"""
@@ -33,14 +33,6 @@ class MountEntry(object):
     def get_passno(self):
         """:returns: pass number on parallel fsck"""
         return self._bunch.passno
-    
-    def get_mountonboot(self):
-        """:returns: should mount on boot"""
-        return self._bunch.mountonboot
-
-    def get_createtime(self):
-        """:returns: creation time of mount"""
-        return self._bunch.createtime
 
     def _str_options(self):
         if self.get_opts().keys() == []:

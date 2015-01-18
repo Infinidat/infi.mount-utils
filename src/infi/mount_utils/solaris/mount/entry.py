@@ -2,8 +2,9 @@ from munch import Munch
 from ...base.mount import MountEntry
 
 class SolarisMountEntry(MountEntry):
-    def __init__(self, fsname, dirname, typename, opts=dict(), freq=0, passno='-', mountonboot="yes", createtime=0):
-        super(SolarisMountEntry, self).__init__(fsname, dirname, typename, opts, freq, passno, mountonboot, createtime)
+    def __init__(self, fsname, dirname, typename, opts=dict(), freq=0, passno='-', mountonboot="yes", creationtime=0):
+        super(SolarisMountEntry, self).__init__(fsname, dirname, typename, opts, freq, passno)
+        self._bunch.update(Munch(mountonboot=mountonboot, creationtime=creationtime))
 
     def _str_options(self):
         if self.get_opts().keys() == []:

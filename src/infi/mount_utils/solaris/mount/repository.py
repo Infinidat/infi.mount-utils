@@ -60,16 +60,16 @@ OPTION_PATTERN = r"(?P<key>{})(?:=(?P<value>{}))?".format(STRING_PATTERN, STRING
 OPTS_PATTERN = r"(?P<opts>{})".format(WORD_PATTERN)
 FREQ_PATTERN = r"(?P<freq>\d*)"
 PASSNO_PATTERN = r"(?P<passno>[\-\d]*)"
-CREATETIME_PATTERN = r"(?P<createtime>\d*)"
+CREATIONTIME_PATTERN = r"(?P<creationtime>\d*)"
 SEP = r"[ \t]+"
 
-MOUNT_ENTRY_PATTERN_MTAB_SOLARIS = r"^{fsname}{sep}{dirname}{sep}{typename}{sep}{opts}{sep}{createtime}$".format(
+MOUNT_ENTRY_PATTERN_MTAB_SOLARIS = r"^{fsname}{sep}{dirname}{sep}{typename}{sep}{opts}{sep}{creationtime}$".format(
                                            sep=SEP,
                                            fsname=FSNAME_PATTERN,
                                            dirname=DIRNAME_PATTERN,
                                            typename=TYPNAME_PATTERN,
                                            opts=OPTS_PATTERN,
-                                           createtime=CREATETIME_PATTERN)
+                                           creationtime=CREATIONTIME_PATTERN)
 MOUNT_ENTRY_PATTERN_FSTAB_SOLARIS = r"^{fsname}{sep}{unparsed}{sep}{dirname}{sep}{typename}{sep}{passno}{sep}{mountonboot}{sep}{opts}$".format(
                                            sep=SEP,
                                            unparsed=WORD_PATTERN,
@@ -78,5 +78,4 @@ MOUNT_ENTRY_PATTERN_FSTAB_SOLARIS = r"^{fsname}{sep}{unparsed}{sep}{dirname}{sep
                                            typename=TYPNAME_PATTERN,
                                            passno=PASSNO_PATTERN,
                                            mountonboot=WORD_PATTERN,
-                                           opts=OPTS_PATTERN,
-                                           createtime=CREATETIME_PATTERN)
+                                           opts=OPTS_PATTERN)

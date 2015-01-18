@@ -332,42 +332,42 @@ MTAB_SOLARIS = [
         "dirname": "/",
         "fsname": "rpool/ROOT/solaris",
         "opts": {"dev": 4490002},
-        "createtime": "0"
+        "creationtime": "0"
     },
     {
         "typename": "devfs",
         "dirname": "/devices",
         "fsname": "/devices",
         "opts": {"dev": 8540000},
-        "createtime": "1419158457"
+        "creationtime": "1419158457"
     },
     {
         "typename": "dev",
         "dirname": "/dev",
         "fsname": "/dev",
         "opts": {"dev": 8580000},
-        "createtime": "1419158457"
+        "creationtime": "1419158457"
     },
     {
         "typename": "ctfs",
         "dirname": "/system/contract",
         "fsname": "ctfs",
         "opts": {"dev": 8640001},
-        "createtime": "1419158457"
+        "creationtime": "1419158457"
     },
     {
         "typename": "proc",
         "dirname": "/proc",
         "fsname": "proc",
         "opts": {"dev": "85c0000"},
-        "createtime": "1419158457"
+        "creationtime": "1419158457"
     },
     {
         "typename": "mntfs",
         "dirname": "/etc/mnttab",
         "fsname": "mnttab",
         "opts": {"dev": 8680001},
-        "createtime": "1419158457"
+        "creationtime": "1419158457"
     },
     {
         "typename": "tmpfs",
@@ -375,28 +375,28 @@ MTAB_SOLARIS = [
         "fsname": "swap",
         "opts": {"xattr": True,
         "dev": "86c0001"},
-        "createtime": "1419158457"
+        "creationtime": "1419158457"
     },
     {
         "typename": "objfs",
         "dirname": "/system/object",
         "fsname": "objfs",
         "opts": {"dev": 8700001},
-        "createtime": "1419158457"
+        "creationtime": "1419158457"
     },
     {
         "typename": "sharefs",
         "dirname": "/etc/dfs/sharetab",
         "fsname": "sharefs",
         "opts": {"dev": 8740001},
-        "createtime": "1419158457"
+        "creationtime": "1419158457"
     },
     {
         "typename": "lofs",
         "dirname": "/lib/libc.so.1",
         "fsname": "/usr/lib/libc/libc_hwcap1.so.1",
         "opts": {"dev": 4490002},
-        "createtime": "1419158477"
+        "creationtime": "1419158477"
     },
     {
         "typename": "fd",
@@ -404,7 +404,7 @@ MTAB_SOLARIS = [
         "fsname": "fd",
         "opts": {"rw": True,
             "dev": 8840001},
-        "createtime": "1419158480"
+        "creationtime": "1419158480"
     },
     {
         "typename": "zfs",
@@ -419,7 +419,7 @@ MTAB_SOLARIS = [
             "atime": True,
             "xattr": True,
             "rstchown": True},
-        "createtime": "1419158480"
+        "creationtime": "1419158480"
     },
     {
         "typename": "tmpfs",
@@ -427,7 +427,7 @@ MTAB_SOLARIS = [
         "fsname": "swap",
         "opts": {"xattr": True,
         "dev": "86c0002"},
-        "createtime": "1419158480"
+        "creationtime": "1419158480"
     },
     {
         "typename": "zfs",
@@ -442,7 +442,7 @@ MTAB_SOLARIS = [
             "atime": True,
             "xattr": True,
             "rstchown": True},
-        "createtime": "1419158480"
+        "creationtime": "1419158480"
     },
     {
         "typename": "zfs",
@@ -457,7 +457,7 @@ MTAB_SOLARIS = [
             "atime": True,
             "xattr": True,
             "rstchown": True},
-        "createtime": "1419158494"
+        "creationtime": "1419158494"
     },
     {
         "typename": "zfs",
@@ -472,7 +472,7 @@ MTAB_SOLARIS = [
             "atime": True,
             "xattr": True,
             "rstchown": True},
-        "createtime": "1419158495"
+        "creationtime": "1419158495"
     },
     {
         "typename": "zfs",
@@ -487,7 +487,7 @@ MTAB_SOLARIS = [
             "atime": True,
             "xattr": True,
             "rstchown": True},
-        "createtime": "1419158495"
+        "creationtime": "1419158495"
     },
     {
         "typename": "autofs",
@@ -498,7 +498,7 @@ MTAB_SOLARIS = [
         "nosuid": True,
         "dev": "88c0001",
         "nobrowse": True},
-        "createtime": "1419158500"
+        "creationtime": "1419158500"
     },
     {
         "typename": "autofs",
@@ -508,7 +508,7 @@ MTAB_SOLARIS = [
         "indirect": True,
         "dev": "88c0002",
         "nobrowse": True},
-        "createtime": "1419158500"
+        "creationtime": "1419158500"
     },
     {
         "typename": "autofs",
@@ -520,7 +520,7 @@ MTAB_SOLARIS = [
             "ro": True,
             "nosuid": True,
             "nobrowse": True},
-        "createtime": "1419158500"}
+        "creationtime": "1419158500"}
 ]
 
 FSTAB_REDHAT = [
