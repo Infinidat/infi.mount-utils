@@ -2,14 +2,14 @@ Overview
 ========
 This is an Infinidat project.
 
-Usage
------
-Nothing to use here.
+Installation
+============
+To install this package, use easy_install:
 
-Checking out the code
-=====================
-Run the following commands:
-    
+    easy_install -U infi.mount_utils
+
+For development, clone this repository and run the following commands:
+
     easy_install -U infi.projector
     projector devenv build
 
