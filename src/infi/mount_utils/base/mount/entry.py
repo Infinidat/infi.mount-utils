@@ -46,6 +46,6 @@ class MountEntry(object):
         return options.strip(',')
 
     def __str__(self):
-        return "\t".join(str(item) for item in \
+        return "\t".join(item.encode("utf-8") for item in \
                          [self.get_fsname(), self.get_dirname(), self.get_typename(),
                          self._str_options(), self.get_freq(), self.get_passno()])

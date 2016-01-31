@@ -8,7 +8,7 @@ def execute(commandname, args):
     debug = log.debug
 
     from infi.execute import execute as _execute
-    debug('executing {} {}'.format(commandname, ' '.join(args)))
+    debug(u'executing {} {}'.format(commandname, ' '.join(args)))
     subprocess = _execute([commandname] + args)
     debug('waiting for it')
     subprocess.wait()

@@ -26,14 +26,14 @@ class LinuxMountRepositoryMixin(MountRepositoryMixin):
     def _get_list_of_groupdicts_from_mtab(self):
         pattern = re.compile(MOUNT_ENTRY_PATTERN_LINUX, re.MULTILINE)
         string = self._read_mtab()
-        log.debug("mtab content = \n{}".format(string))
+        log.debug(u"mtab content = \n{}".format(string))
         results = [match.groupdict() for match in pattern.finditer(string)]
         return self._parse_options_in_entries(results)
 
     def _get_list_of_groupdicts_from_fstab(self):
         pattern = re.compile(MOUNT_ENTRY_PATTERN_LINUX, re.MULTILINE)
         string = self._read_fstab()
-        log.debug("fstab content = \n{}".format(string))
+        log.debug(u"fstab content = \n{}".format(string))
         results = [match.groupdict() for match in pattern.finditer(string)]
         return self._parse_options_in_entries(results)
 
