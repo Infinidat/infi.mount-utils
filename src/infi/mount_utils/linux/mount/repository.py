@@ -47,8 +47,6 @@ class LinuxMountRepositoryMixin(MountRepositoryMixin):
             if fsname in utab_results:
                 mtab_result['opts'].update(utab_results[fsname])
 
-        print mtab_results
-
         return mtab_results
 
     def _get_list_of_groupdicts_from_fstab(self):
