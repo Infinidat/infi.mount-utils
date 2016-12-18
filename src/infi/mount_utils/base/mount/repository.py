@@ -32,6 +32,9 @@ class MountRepositoryMixin(object):
             self._parse_options_for_entry(entry)
         return entries
 
+    def _get_entries_dict_from_utab(self):
+        raise NotImplementedError()
+
     def _get_list_of_groupdicts_from_mtab(self):
         raise NotImplementedError()
 
