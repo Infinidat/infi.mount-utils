@@ -4,6 +4,7 @@ from munch import Munch
 from ...base.mount import MountRepositoryMixin
 
 from logging import getLogger
+from collections import OrderedDict
 log = getLogger()
 
 class LinuxMountRepositoryMixin(MountRepositoryMixin):
@@ -18,7 +19,7 @@ class LinuxMountRepositoryMixin(MountRepositoryMixin):
 
     def _parse_options_for_entry(self, entry):
         string = entry["opts"]
-        results = {}
+        results = OrderedDict()
         pattern = re.compile(OPTION_PATTERN)
         for match in pattern.finditer(string):
             key = match.groupdict().get("key")
