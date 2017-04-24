@@ -3,6 +3,7 @@ import re
 from munch import Munch
 from . import SolarisMountEntry
 from ...base.mount import MountRepositoryMixin
+from collections import OrderedDict
 
 from logging import getLogger
 log = getLogger()
@@ -26,7 +27,7 @@ class SolarisMountRepositoryMixin(MountRepositoryMixin):
 
     def _parse_options_for_entry(self, entry):
         string = entry["opts"]
-        results = {}
+        results = OrderedDict()
         pattern = re.compile(OPTION_PATTERN)
         for match in pattern.finditer(string):
             key = match.groupdict().get("key")
