@@ -21,6 +21,9 @@ class MountEntry(object):
         """:returns: name of mounted file system"""
         return self._bunch.fsname
 
+    def set_fsname(self, fsname):
+        self._bunch.fsname = fsname
+
     def get_dirname(self):
         """:returns: file system path prefix"""
         replaced_dirname = self._bunch.dirname
