@@ -42,7 +42,9 @@ class LinuxMountRepositoryMixin(MountRepositoryMixin):
         # https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/tree/lib/canonicalize.c (canonicalize_path)
         import os
         import stat
-        canonical = os.path.realpath(path)
+        if not os.path.exists(path):
+            return path
+        canonical = os.path.abspath(os.path.realpath(path))
         if "/" in canonical:
             part = canonical.rsplit("/", 1)[1]
             if part.startswith("dm-") and part[3:].isdigit() and stat.S_ISBLK(os.stat(canonical).st_mode):
