@@ -36,6 +36,23 @@ class LinuxMountRepositoryMixin(MountRepositoryMixin):
                        pattern.finditer(string)])
         return results
 
+    def _canonicalize_path(self, path):
+        # HPT-2164 sometimes mtab contains devices in their "dm" names which can change between boots.
+        # 'mount' command handles this by canonicalizing the paths and turning them into the real (/dev/mapper) names:
+        # https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/tree/lib/canonicalize.c (canonicalize_path)
+        import os
+        import stat
+        if not os.path.exists(path):
+            return path
+        canonical = os.path.abspath(os.path.realpath(path))
+        if "/" in canonical:
+            part = canonical.rsplit("/", 1)[1]
+            if part.startswith("dm-") and part[3:].isdigit() and stat.S_ISBLK(os.stat(canonical).st_mode):
+                with open("/sys/block/{}/dm/name".format(part), "r") as fd:
+                    name = fd.read().strip()
+                return "/dev/mapper/" + name
+        return canonical
+
     def _get_list_of_groupdicts_from_mtab(self):
         pattern = re.compile(MOUNT_ENTRY_PATTERN_LINUX, re.MULTILINE)
         string = self._read_mtab()
@@ -47,6 +64,7 @@ class LinuxMountRepositoryMixin(MountRepositoryMixin):
             fsname = mtab_result['fsname']
             if fsname in utab_results:
                 mtab_result['opts'].update(utab_results[fsname])
+            mtab_result['fsname'] = self._canonicalize_path(mtab_result['fsname'])
 
         return mtab_results
 
