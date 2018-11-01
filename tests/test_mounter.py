@@ -1,6 +1,6 @@
 from unittest import SkipTest
 from infi import unittest
-from contextlib import nested, contextmanager
+from contextlib import contextmanager
 from infi.mount_utils.base import MountEntry
 from mock import patch
 from platform import platform
@@ -59,11 +59,11 @@ class MounterTestCase(unittest.TestCase):
     @unittest.parameters.iterate("distro", DISTRO_LIST)
     def test_mount__with_options(self, distro):
         with self.patch_execute() as execute:
-            entry = _get_mount_entry_for_os(distro)("foo" , "bar", "baz", {"rw":True, "relatime":True,
-                                                      "size":"501668k",
-                                                      "mode":755})
+            opts = {"rw": True, "relatime": True, "size": "501668k", "mode": 755}
+            entry = _get_mount_entry_for_os(distro)("foo" , "bar", "baz", opts)
             _get_mounter_mixin_for_os(distro)().mount_entry(entry)
-        execute.assert_called_once_with("mount", "{} baz foo bar -o relatime,rw,mode=755,size=501668k".format(MOUNT_FS_FLAG[distro]).split())
+        opts_str = ",".join(k if v is True else "{}={}".format(k, v) for k, v in opts.items())
+        execute.assert_called_once_with("mount", "{} baz foo bar -o {}".format(MOUNT_FS_FLAG[distro], opts_str).split())
 
 class MaintainingFSTabTestCase(unittest.TestCase):
     @classmethod
@@ -80,9 +80,9 @@ class MaintainingFSTabTestCase(unittest.TestCase):
 
     @contextmanager
     def patch_fstab(self):
-        with nested(patch.object(self._mount_repository_mixin, "_read_fstab"),
-                    patch.object(self._mounter_mixin, "_read_fstab"),
-                    patch.object(self._mounter_mixin, "_get_fstab_context")) as (mock1, mock2, mock3):
+        with patch.object(self._mount_repository_mixin, "_read_fstab") as mock1, \
+             patch.object(self._mounter_mixin, "_read_fstab") as mock2, \
+             patch.object(self._mounter_mixin, "_get_fstab_context") as mock3:
             def read_side_effect(*args, **kwargs):
                 return self._fstab
 

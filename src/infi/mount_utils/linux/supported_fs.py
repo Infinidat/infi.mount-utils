@@ -79,6 +79,5 @@ class LinuxSupportedFileSystemsMixin(SupportedFileSystemsMixin):
         from glob import glob
         basedir = "/sbin"
         replace_string = "{}/mount.".format(basedir)
-        return map(lambda path: path.replace(replace_string, ""),
-                   glob("{}*".format(replace_string)))
+        return [path.replace(replace_string, "") for path in glob("{}*".format(replace_string))]
 

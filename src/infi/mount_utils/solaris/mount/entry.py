@@ -7,7 +7,7 @@ class SolarisMountEntry(MountEntry):
         self._bunch.update(Munch(mountonboot=mountonboot, creationtime=creationtime))
 
     def _str_options(self):
-        if self.get_opts().keys() == []:
+        if list(self.get_opts().keys()) == []:
             return ''
         options = ''
         for key, value in self.get_opts().items():

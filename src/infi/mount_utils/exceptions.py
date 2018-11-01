@@ -34,7 +34,7 @@ ERRORCODES_DICT = {1:IncorrectInvocationOrPermissions,
                    64:SomeMountSucceededException}
 
 def translate_mount_error(errorno):
-    if ERRORCODES_DICT.has_key(errorno):
+    if errorno in ERRORCODES_DICT:
         return ERRORCODES_DICT.get(errorno)
     else:
         return MountException(errorno)
