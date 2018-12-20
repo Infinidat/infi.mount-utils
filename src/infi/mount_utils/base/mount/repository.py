@@ -14,7 +14,7 @@ class MountRepositoryMixin(object):
         from os.path import exists
         if not exists(path):
             return ''
-        with open(path) as fd:
+        with open(path, "rb") as fd:
             return fd.read().decode("utf-8")
 
     def _translate_value(self, value):

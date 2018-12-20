@@ -48,7 +48,7 @@ class MountEntry(object):
         return self._bunch.passno
 
     def _str_options(self):
-        if self.get_opts().keys() == []:
+        if list(self.get_opts().keys()) == []:
             return ''
         options = ''
         for key, value in self.get_opts().items():

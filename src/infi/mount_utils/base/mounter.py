@@ -26,7 +26,7 @@ def execute_umount(args):
 
 class MounterMixin(object):
     def _format_options(self, entry):
-        if entry.get_opts().keys() == []:
+        if list(entry.get_opts().keys()) == []:
             return []
         options = ''
         for key, value in entry.get_opts().items():

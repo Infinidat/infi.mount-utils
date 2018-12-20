@@ -31,7 +31,7 @@ class SolarisSupportedFileSystemsMixin(SupportedFileSystemsMixin):
         fscount = libc.sysfs(SYSFC_COUNT_OPCODE)
         fsname = create_string_buffer(SYSFC_NAME_SIZE)
         result = []
-        for i in xrange(1, fscount + 1):
+        for i in range(1, fscount + 1):
             if not (libc.sysfs(SYSFC_GET_NAME_OPCODE, i, fsname) == -1 or fsname.value == ''):
                 result.append(fsname.value)
         return result
@@ -40,5 +40,4 @@ class SolarisSupportedFileSystemsMixin(SupportedFileSystemsMixin):
         from glob import glob
         basedir = "/usr/lib/fs"
         replace_string = "{}/".format(basedir)
-        return map(lambda path: path.replace(replace_string, ""),
-                   glob("{}*".format(replace_string)))
+        return [path.replace(replace_string, "") for path in glob("{}*".format(replace_string))]

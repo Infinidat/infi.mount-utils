@@ -22,7 +22,7 @@ class SolarisMountRepositoryMixin(MountRepositoryMixin):
         keys_to_none_string = ["dirname"]
         for entry in entries:
             for key in keys_to_none_string:
-                if entry.has_key(key) and entry[key] == '-':
+                if key in entry and entry[key] == '-':
                     entry[key] = "none"
 
     def _parse_options_for_entry(self, entry):

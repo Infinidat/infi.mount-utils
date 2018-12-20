@@ -1,8 +1,8 @@
 from infi import unittest
-from contextlib import nested, contextmanager
+from contextlib import contextmanager
 from mock import patch
 from os.path import dirname, join
-from expected import MTAB_REDHAT, MTAB_UBUNTU, MTAB_SOLARIS, \
+from .expected import MTAB_REDHAT, MTAB_UBUNTU, MTAB_SOLARIS, \
                      FSTAB_REDHAT, FSTAB_UBUNTU, FSTAB_SOLARIS
 import glob
 
@@ -28,9 +28,8 @@ class ReadMountFilesTestCase(unittest.TestCase):
     def patch_getters(self, distro):
         self.assertIn(distro, DISTRO_LIST)
         mount_repository_mixin = self._get_mount_repository_for_os(distro)
-        with nested(patch.object(mount_repository_mixin, "_read_fstab"),
-                    patch.object(mount_repository_mixin, "_read_mtab")) as \
-                    (fstab, mtab):
+        with patch.object(mount_repository_mixin, "_read_fstab") as fstab, \
+             patch.object(mount_repository_mixin, "_read_mtab") as mtab:
             with open(join(dirname(__file__), distro, "fstab")) as fd:
                 fstab.return_value = fd.read()
             with open(join(dirname(__file__), distro, "mtab")) as fd:
